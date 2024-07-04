@@ -9,7 +9,7 @@ const Footer = () => {
       <div className="flex flex-col items-center justify-center">
         <h2 className="text-center">
           Want to contribute? Find an issue with this page?{" "}
-          <Link to="https://github.com/cesarpizarra/naruto/issues">
+          <Link to="https://github.com/cesarpizarra/pabuya/issues">
             <span className="cursor-pointer font-semibold text-danger hover:underline">
               Fix it on GitHub
             </span>
