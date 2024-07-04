@@ -1,4 +1,3 @@
-import { TbActivityHeartbeat } from "react-icons/tb";
 import { johnWick } from "../utils";
 import MovieCard from "./card/MovieCard";
 
