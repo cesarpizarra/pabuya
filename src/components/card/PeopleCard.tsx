@@ -5,7 +5,6 @@ import { TbActivityHeartbeat } from "react-icons/tb";
 import { IMAGE_URL } from "../../api/api";
 
 const PeopleCard: React.FC<PeopleProps> = ({
-  id,
   name,
   popularity,
   known_for_department,
