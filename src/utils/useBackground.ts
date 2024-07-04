@@ -1,3 +1,6 @@
+import { useEffect, useState } from "react";
+import { IMAGE_URL } from "../api/api";
+
 const images: string[] = [
   "/vVpEOvdxVBP2aV166j5Xlvb5Cdc.jpg",
   "/faV0HuR6WnQoLrVq3r6mhjaABL9.jpg",
@@ -9,4 +12,14 @@ const images: string[] = [
 export const getRandomBackgroundImage = (): string => {
   const randomIndex = Math.floor(Math.random() * images.length);
   return images[randomIndex];
+};
+
+export const useBackgroundImage = () => {
+  const [backgroundImage, setBackgroundImage] = useState("");
+
+  useEffect(() => {
+    setBackgroundImage(`${IMAGE_URL}${getRandomBackgroundImage()}`);
+  }, []);
+
+  return backgroundImage;
 };

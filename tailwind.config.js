@@ -5,11 +5,12 @@ export default {
     extend: {
       colors: {
         darkPrimary: "#141414",
+        darkSecondary: "rgba(44, 44, 44, .349)",
         backDrop: "rgba(0, 0, 0, .3)",
         secondary: "#f1c40f",
         gradient: "rgba(10, 10, 10, 0.6)",
         grayText: "#bfbfbf",
-        danger: "#FC4C4C",
+        danger: "#e60a15",
       },
     },
   },

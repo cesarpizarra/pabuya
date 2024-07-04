@@ -10,7 +10,7 @@ const Footer = () => {
         <h2 className="text-center">
           Want to contribute? Find an issue with this page?{" "}
           <Link to="https://github.com/cesarpizarra/naruto/issues">
-            <span className="cursor-pointer font-semibold text-red-500 hover:underline">
+            <span className="cursor-pointer font-semibold text-danger hover:underline">
               Fix it on GitHub
             </span>
           </Link>

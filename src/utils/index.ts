@@ -68,3 +68,26 @@ export const johnWick = [
     vote_count: 6044,
   },
 ];
+
+export const links = [
+  {
+    title: "Movie Genres",
+    path: "/movie-genres",
+  },
+  {
+    title: "Browse Movies",
+    path: "/browse-movies",
+  },
+  {
+    title: "TV",
+    path: "/tv",
+  },
+  {
+    title: "Signin/Signup",
+    path: "/movie-genres",
+  },
+  {
+    title: "My Watchlist",
+    path: "/watchlist",
+  },
+];

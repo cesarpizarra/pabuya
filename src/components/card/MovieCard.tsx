@@ -11,7 +11,7 @@ const MovieCard: React.FC<MovieProps> = ({
   vote_average,
 }) => {
   return (
-    <div className="bg-darkSecondary h-96 rounded-md py-2 duration-300">
+    <div className="h-96 rounded-md py-2 duration-300">
       <div className="h-3/4 w-48 cursor-pointer transition-all hover:rotate-3 hover:scale-105">
         <img
           src={`${IMAGE_URL}/${poster_path}`}
