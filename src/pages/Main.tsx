@@ -8,9 +8,22 @@ import Upcoming from "../components/sections/Upcoming";
 import Banner from "../components/Banner";
 import Trending from "../components/sections/Trending";
 import { useBackgroundImage } from "../utils/useBackground";
+import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 const Main = () => {
   const backgroundImage = useBackgroundImage();
+  const navigate = useNavigate();
+  const [query, setQuery] = useState("");
+  const handleSearch = () => {
+    // Navigate to BrowseMovies with query
+    navigate(`/browse-movies?query=${encodeURIComponent(query)}`);
+  };
 
+  const handleKeyPress = (e: any) => {
+    if (e.key === "Enter") {
+      handleSearch();
+    }
+  };
   return (
     <Layout>
       <div
@@ -38,9 +51,16 @@ const Main = () => {
             <div className="relative mt-5 w-full">
               <input
                 type="text"
+                value={query}
+                onKeyPress={handleKeyPress}
+                onChange={(e) => setQuery(e.target.value)}
+                placeholder="Search Movies..."
                 className="w-full rounded bg-gray-400 bg-opacity-20 bg-clip-padding p-3 outline-none backdrop-blur-none backdrop-filter md:p-5"
               />
-              <div className="absolute right-5 top-3 cursor-pointer md:top-5">
+              <div
+                onClick={handleSearch}
+                className="absolute right-5 top-3 cursor-pointer md:top-5"
+              >
                 <FiSearch size={25} />
               </div>
             </div>

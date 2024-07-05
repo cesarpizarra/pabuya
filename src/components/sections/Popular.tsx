@@ -5,7 +5,6 @@ import { MovieProps } from "../../types/movie";
 
 const Popular = () => {
   const [data, setData] = useState<MovieProps[]>([]);
-
   useEffect(() => {
     const fetchPopular = async () => {
       try {
@@ -24,14 +23,7 @@ const Popular = () => {
 
       <div className="flex w-full items-center gap-4 overflow-x-auto overflow-y-hidden">
         {data.map((popular) => (
-          <MovieCard
-            key={popular.id}
-            title={popular.title}
-            id={popular.id}
-            poster_path={popular.poster_path}
-            release_date={popular.release_date}
-            vote_average={popular.vote_average}
-          />
+          <MovieCard key={popular.id} {...popular} />
         ))}
       </div>
     </section>

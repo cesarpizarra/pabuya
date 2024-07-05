@@ -3,6 +3,7 @@ import { MovieProps } from "../../types/movie";
 import { Link } from "react-router-dom";
 import { FaStar } from "react-icons/fa";
 import { IMAGE_URL } from "../../api/api";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 const MovieCard: React.FC<MovieProps> = ({
   poster_path,
   title,
@@ -12,7 +13,7 @@ const MovieCard: React.FC<MovieProps> = ({
   return (
     <div className="h-96 rounded-md py-2 duration-300">
       <div className="h-3/4 w-48 cursor-pointer transition-all hover:rotate-3 hover:scale-105">
-        <img
+        <LazyLoadImage
           src={`${IMAGE_URL}/${poster_path}`}
           alt={title}
           className="h-full w-full rounded object-cover"

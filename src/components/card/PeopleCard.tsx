@@ -11,7 +11,7 @@ const PeopleCard: React.FC<PeopleProps> = ({
   profile_path,
 }) => {
   return (
-    <div className="bg-darkSecondary h-96 rounded-md py-2 shadow-md transition-shadow duration-300 hover:shadow-lg">
+    <div className="h-96 rounded-md py-2 shadow-md transition-shadow duration-300 hover:shadow-lg">
       <div className="h-3/4 w-48 cursor-pointer transition-all hover:rotate-3 hover:scale-105">
         <img
           src={`${IMAGE_URL}/${profile_path}`}
@@ -22,7 +22,7 @@ const PeopleCard: React.FC<PeopleProps> = ({
       <div className="py-4">
         <Link
           to={`#`}
-          className="text-primary hover:text-primary-dark block cursor-pointer text-sm font-medium transition-colors duration-300 hover:text-danger"
+          className="text-primary hover:text-primary-dark block cursor-pointer text-sm font-semibold transition-colors duration-300 hover:text-danger"
         >
           {name}
         </Link>

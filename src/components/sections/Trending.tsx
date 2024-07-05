@@ -24,14 +24,7 @@ const Trending = () => {
 
       <div className="flex w-full items-center gap-4 overflow-x-auto overflow-y-hidden">
         {data.map((latest) => (
-          <MovieCard
-            key={latest.id}
-            title={latest.title}
-            id={latest.id}
-            poster_path={latest.poster_path}
-            release_date={latest.release_date}
-            vote_average={latest.vote_average}
-          />
+          <MovieCard key={latest.id} {...latest} />
         ))}
       </div>
     </section>

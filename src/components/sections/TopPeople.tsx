@@ -24,14 +24,7 @@ const TopPeople = () => {
 
       <div className="flex w-full items-center gap-4 overflow-x-auto overflow-y-hidden">
         {data.map((people) => (
-          <PeopleCard
-            key={people.id}
-            id={people.id}
-            name={people.name}
-            popularity={people.popularity}
-            known_for_department={people.known_for_department}
-            profile_path={people.profile_path}
-          />
+          <PeopleCard key={people.id} {...people} />
         ))}
       </div>
     </section>

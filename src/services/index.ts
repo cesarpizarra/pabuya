@@ -60,3 +60,15 @@ export const getPeople = async (): Promise<[]> => {
     throw new Error("Failed to fetch data");
   }
 };
+
+export const searchMovie = async (query: string): Promise<[]> => {
+  try {
+    const response = await axios.get(
+      `https://api.themoviedb.org/3/search/movie?query=${query}&include_adult=false&api_key=${apikKey}&page=1`,
+    );
+    return response.data.results;
+  } catch (error) {
+    console.error("API Error:", error);
+    throw new Error("Failed to fetch data");
+  }
+};
