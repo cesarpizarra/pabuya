@@ -22,9 +22,10 @@ const BrowseMovies = () => {
     }
     setIsLoading(true);
     try {
+      const searchResults = await searchMovie(query);
       setTimeout(() => {
         setIsLoading(false);
-        fetchData();
+        setResults(searchResults);
       }, 1500);
     } catch (error) {
       console.error(error);
