@@ -16,12 +16,15 @@ const BrowseMovies = () => {
   const [results, setResults] = useState<any[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const handleSearch = async () => {
+    if (query === "") {
+      alert("Please enter a movie title");
+      return;
+    }
     setIsLoading(true);
     try {
-      const searchResults = await searchMovie(query);
       setTimeout(() => {
         setIsLoading(false);
-        setResults(searchResults);
+        fetchData();
       }, 1500);
     } catch (error) {
       console.error(error);
@@ -34,22 +37,24 @@ const BrowseMovies = () => {
     }
   };
 
-  useEffect(() => {
-    const fetchData = async () => {
-      setIsLoading(true);
-      try {
-        const searchResults = await searchMovie(queryParam);
-        setTimeout(() => {
-          setIsLoading(false);
-          setResults(searchResults);
-        }, 1500);
-      } catch (error) {
-        console.error(error);
-      }
-    };
+  const fetchData = async () => {
+    setIsLoading(true);
+    try {
+      const searchResults = await searchMovie(queryParam);
+      setTimeout(() => {
+        setIsLoading(false);
+        setResults(searchResults);
+      }, 1500);
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
+  useEffect(() => {
     // Always fetch data initially and when query changes
-    fetchData();
+    if (queryParam.trim() !== "") {
+      fetchData();
+    }
   }, []);
 
   return (
@@ -58,6 +63,8 @@ const BrowseMovies = () => {
         style={{
           backgroundImage: `url(${backgroundImage})`,
           backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundAttachment: "fixed",
         }}
         className="relative min-h-screen w-full bg-cover bg-center px-4"
       >
@@ -66,6 +73,7 @@ const BrowseMovies = () => {
           <input
             type="text"
             onChange={(e) => setQuery(e.target.value)}
+            value={query}
             onKeyPress={handleKeyPress}
             placeholder="Search Movies..."
             className="w-full rounded bg-gray-400 bg-opacity-20 bg-clip-padding p-3 outline-none backdrop-blur-none backdrop-filter md:p-5"

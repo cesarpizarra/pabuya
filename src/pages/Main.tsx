@@ -15,6 +15,10 @@ const Main = () => {
   const navigate = useNavigate();
   const [query, setQuery] = useState("");
   const handleSearch = () => {
+    if (query === "") {
+      alert("Please enter a movie title");
+      return;
+    }
     // Navigate to BrowseMovies with query
     navigate(`/browse-movies?query=${encodeURIComponent(query)}`);
   };

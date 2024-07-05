@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getAllPopular } from "../../services";
+import { getPopular } from "../../services";
 import MovieCard from "../card/MovieCard";
 import { MovieProps } from "../../types/movie";
 
@@ -8,7 +8,7 @@ const Popular = () => {
   useEffect(() => {
     const fetchPopular = async () => {
       try {
-        const response = await getAllPopular();
+        const response = await getPopular();
         setData(response);
       } catch (error) {
         console.error(error);

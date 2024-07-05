@@ -15,7 +15,7 @@ const Navbar = () => {
   }, [isOpen]);
 
   const handleClick = (link: string) => {
-    if (link.includes("/browse-movies")) {
+    if (link.includes("/browse-movies") || link.includes("/genre")) {
       navigate(link);
       setOpen(false);
     } else {
@@ -44,7 +44,7 @@ const Navbar = () => {
             <li
               key={i}
               onClick={() => handleClick(link.path)}
-              className={`bg-darkSecondary my-2 w-full rounded-md py-4 text-xl font-semibold uppercase hover:bg-danger ${link.title.includes("Watchlist") ? "pointer-events-none text-darkPrimary" : "cursor-pointer"}`}
+              className={`my-2 w-full rounded-md bg-darkSecondary py-4 text-xl font-semibold uppercase hover:bg-danger ${link.title.includes("Watchlist") ? "pointer-events-none text-darkPrimary" : "cursor-pointer"}`}
             >
               {link.title}
             </li>
