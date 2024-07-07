@@ -13,6 +13,10 @@ export default {
         grayText: "#bfbfbf",
         danger: "#e60a15",
       },
+      fontFamily: {
+        nunito: ["Nunito", "sans-serif"],
+        poppins: ["Poppins"],
+      },
     },
   },
   plugins: [],

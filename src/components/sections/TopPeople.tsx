@@ -20,7 +20,7 @@ const TopPeople = () => {
 
   return (
     <section className="w-full bg-darkPrimary px-8 py-8 text-white">
-      <h2 className="font-sans text-xl font-medium">Top People</h2>
+      <h2 className="font-nunito text-xl font-medium">Top People</h2>
 
       <div className="flex w-full items-center gap-4 overflow-x-auto overflow-y-hidden">
         {data.map((people) => (

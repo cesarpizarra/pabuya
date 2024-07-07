@@ -13,6 +13,7 @@ interface GenreCardProps extends Movie {
 }
 
 const GenreCard: React.FC<GenreCardProps> = ({
+  id,
   poster_path,
   title,
   release_date,
@@ -27,6 +28,7 @@ const GenreCard: React.FC<GenreCardProps> = ({
   const [modalOpen, setModalOpen] = useState(false);
   const handleClick = () => {
     const movie = {
+      id,
       poster_path,
       title,
       release_date,
@@ -82,7 +84,7 @@ const GenreCard: React.FC<GenreCardProps> = ({
           <div className="flex items-center gap-1 text-sm text-danger">
             <FaHeart />
             <span className="text-white">
-              {vote_count ? (vote_count / 100).toFixed(2) : "N/A"}
+              {vote_count ? vote_count : "N/A"}
             </span>
           </div>
         </div>
@@ -90,6 +92,7 @@ const GenreCard: React.FC<GenreCardProps> = ({
 
       <MovieModal
         movie={{
+          id,
           poster_path,
           title,
           release_date,

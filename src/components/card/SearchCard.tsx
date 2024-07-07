@@ -12,6 +12,7 @@ interface SearchCardProps extends Movie {
 }
 
 const SearchCard: React.FC<SearchCardProps> = ({
+  id,
   poster_path,
   title,
   release_date,
@@ -26,6 +27,7 @@ const SearchCard: React.FC<SearchCardProps> = ({
 
   const handleClick = () => {
     const movie = {
+      id,
       poster_path,
       title,
       release_date,
@@ -85,6 +87,7 @@ const SearchCard: React.FC<SearchCardProps> = ({
 
       <MovieModal
         movie={{
+          id,
           poster_path,
           title,
           release_date,

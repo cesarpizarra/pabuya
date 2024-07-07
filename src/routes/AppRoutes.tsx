@@ -2,6 +2,7 @@ import { Route, Routes } from "react-router-dom";
 import Main from "../pages/Main";
 import BrowseMovies from "../pages/BrowseMovies";
 import Genre from "../pages/Genre";
+import MovieDetails from "../pages/MovieDetails";
 
 const AppRoutes = () => {
   return (
@@ -10,6 +11,7 @@ const AppRoutes = () => {
         <Route path="/" element={<Main />} />
         <Route path="/browse-movies" element={<BrowseMovies />} />
         <Route path="/genre" element={<Genre />} />
+        <Route path="/movie/:id" element={<MovieDetails />} />
       </Routes>
     </div>
   );

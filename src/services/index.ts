@@ -12,6 +12,30 @@ export const getPopular = async (): Promise<[]> => {
     throw new Error("Failed to fetch data");
   }
 };
+
+export const getMovieById = async (id: number) => {
+  try {
+    const response = await axios.get(
+      `https://api.themoviedb.org/3/movie/${id}?api_key=${apikKey}&page=1`,
+    );
+    return response.data;
+  } catch (error) {
+    console.error("API Error:", error);
+    throw new Error("Failed to fetch data");
+  }
+};
+
+export const getVideo = async (id: number) => {
+  try {
+    const response = await axios.get(
+      `https://api.themoviedb.org/3/movie/${id}/videos?api_key=${apikKey}&page=1`,
+    );
+    return response.data.results[0];
+  } catch (error) {
+    console.error("API Error:", error);
+    throw new Error("Failed to fetch data");
+  }
+};
 export const getGenre = async (): Promise<[]> => {
   try {
     const response = await axios.get(

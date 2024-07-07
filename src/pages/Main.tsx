@@ -28,19 +28,15 @@ const Main = () => {
         <div className="absolute left-0 top-0 h-full w-full bg-black bg-opacity-50 bg-gradient-to-r from-gradient"></div>
         <div className="relative z-10 p-5 text-white">
           <div className="mx-auto mt-72 max-w-6xl text-center">
-            <h1 className="text-2xl font-semibold drop-shadow-md md:text-4xl lg:text-5xl">
+            <h1 className="font-poppins text-2xl font-semibold drop-shadow-md md:text-4xl lg:text-5xl">
               The Ultimate{" "}
               <span className="inline-block bg-gradient-to-r from-green-500 to-cyan-400 bg-clip-text font-bold text-transparent">
                 TMDB
               </span>{" "}
-              &{" "}
-              <span className="inline-block bg-gradient-to-r from-yellow-500 to-yellow-300 bg-clip-text font-bold text-transparent">
-                IMDB
-              </span>{" "}
               Alternative for Discovering Thousands of Movies and TV Shows
             </h1>
 
-            <p className="text-md mt-5 text-grayText md:text-2xl">
+            <p className="text-md font-nunito mt-5 text-grayText md:text-2xl">
               Explore and Discuss Your Favorite Movies and TV Shows.
             </p>
 

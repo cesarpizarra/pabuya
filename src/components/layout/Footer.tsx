@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import { FaReact } from "react-icons/fa";
 const Footer = () => {
   return (
-    <footer className="bg-darkPrimary p-5 font-medium text-white">
+    <footer className="font-nunito bg-darkPrimary p-5 font-medium text-white">
       <div className="flex flex-col items-center justify-center">
         <h2 className="text-center">
           Want to contribute? Find an issue with this page?{" "}

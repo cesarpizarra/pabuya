@@ -10,6 +10,7 @@ interface MovieCardProps extends Movie {
   onImageClick?: (movie: Movie) => void;
 }
 const MovieCard: React.FC<MovieCardProps> = ({
+  id,
   poster_path,
   title,
   release_date,
@@ -23,6 +24,7 @@ const MovieCard: React.FC<MovieCardProps> = ({
 
   const handleClick = () => {
     const movie = {
+      id,
       poster_path,
       title,
       release_date,
@@ -56,7 +58,7 @@ const MovieCard: React.FC<MovieCardProps> = ({
       </div>
       <div className="py-4">
         <Link
-          to={`#`}
+          to={`/movie/${id}`}
           className="text-primary hover:text-primary-dark block cursor-pointer text-sm font-semibold transition-colors duration-300 hover:text-danger"
         >
           {title.length > 30 ? `${title.substring(0, 21)}...` : title}
@@ -82,6 +84,7 @@ const MovieCard: React.FC<MovieCardProps> = ({
           backdrop_path,
           overview,
           genre_ids,
+          id,
         }}
         isOpen={modalOpen}
         onClose={closeModal}

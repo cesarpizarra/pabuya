@@ -9,7 +9,7 @@ const Banner = () => {
           "url(https://image.tmdb.org/t/p/original/ipyxbPJrLB1g9AfHq4xH5nLWmew.jpg)",
         backgroundSize: "cover",
       }}
-      className="w-full px-5 py-8"
+      className="font-nunito w-full px-5 py-8"
     >
       <div className="flex gap-5">
         <div className="hidden w-80 lg:block">
@@ -21,10 +21,10 @@ const Banner = () => {
         </div>
 
         <div className="flex w-full flex-col text-white">
-          <h1 className="font-sans text-xl font-bold drop-shadow-lg md:text-4xl">
+          <h1 className="text-xl font-bold drop-shadow-lg md:text-4xl">
             John Wick
           </h1>
-          <p className="font-sans text-sm md:text-xl">
+          <p className="text-sm md:text-xl">
             Ex-hitman John Wick comes out of retirement to track down the
             gangsters that took everything from him.
           </p>

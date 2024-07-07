@@ -43,7 +43,7 @@ const Genre = () => {
       <div className="relative min-h-screen w-full bg-cover bg-center px-4 text-white">
         <div className="mt-28 items-center justify-between md:flex">
           <h1 className="text-lg font-semibold md:text-3xl">
-            Popular <span className="text-secondary">Comedy</span> Movies
+            Popular <span className="text-secondary">Movies</span>
           </h1>
 
           <div className="text-md items-center gap-5 text-grayText md:flex">
@@ -52,7 +52,7 @@ const Genre = () => {
               <div className="relative">
                 <select
                   onChange={handleGenreChange}
-                  className="relative appearance-none rounded border-none bg-stone-800 bg-transparent px-8 py-1 pr-10 shadow-xl outline-none md:py-2"
+                  className="relative appearance-none rounded border-none bg-neutral-800 bg-transparent px-8 py-1 pr-10 shadow-xl outline-none md:py-2"
                 >
                   {genres.map((genre) => (
                     <option
@@ -69,10 +69,10 @@ const Genre = () => {
                 </span>
               </div>
             </div>
-            <div className="mt-4 flex items-center gap-2 md:mt-0">
+            {/* <div className="mt-4 flex items-center gap-2 md:mt-0">
               <p className="text-sm font-semibold md:text-lg">Sorted By:</p>
               <div className="relative">
-                <select className="relative appearance-none rounded border-none bg-stone-800 bg-transparent px-8 py-1 pr-10 shadow-xl outline-none md:py-2">
+                <select className="relative appearance-none rounded border-none bg-neutral-800 bg-transparent px-8 py-1 pr-10 shadow-xl outline-none md:py-2">
                   <option className="border-none bg-darkPrimary outline-none">
                     Popularity
                   </option>
@@ -87,7 +87,7 @@ const Genre = () => {
                   <FaCaretDown />
                 </span>
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
 
