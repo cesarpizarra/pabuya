@@ -1,18 +1,52 @@
-import React from "react";
-import { MovieProps } from "../../types/movie";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { FaStar } from "react-icons/fa";
 import { IMAGE_URL } from "../../api/api";
 import { LazyLoadImage } from "react-lazy-load-image-component";
-const MovieCard: React.FC<MovieProps> = ({
+import MovieModal from "../modal/MovieModal";
+import { Movie } from "../../types/movie";
+
+interface MovieCardProps extends Movie {
+  onImageClick?: (movie: Movie) => void;
+}
+const MovieCard: React.FC<MovieCardProps> = ({
   poster_path,
   title,
   release_date,
   vote_average,
+  onImageClick,
+  backdrop_path,
+  overview,
+  genre_ids,
 }) => {
+  const [modalOpen, setModalOpen] = useState(false);
+
+  const handleClick = () => {
+    const movie = {
+      poster_path,
+      title,
+      release_date,
+      vote_average,
+      backdrop_path,
+      overview,
+      genre_ids,
+    };
+    if (typeof onImageClick === "function") {
+      onImageClick(movie);
+    }
+    setModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setModalOpen(false);
+  };
+
   return (
     <div className="h-96 rounded-md py-2 duration-300">
-      <div className="h-3/4 w-48 cursor-pointer transition-all hover:rotate-3 hover:scale-105">
+      <div
+        onClick={handleClick}
+        className="h-3/4 w-48 cursor-pointer transition-all hover:rotate-3 hover:scale-105"
+      >
         <LazyLoadImage
           src={`${IMAGE_URL}/${poster_path}`}
           alt={title}
@@ -39,6 +73,19 @@ const MovieCard: React.FC<MovieProps> = ({
           </p>
         </div>
       </div>
+      <MovieModal
+        movie={{
+          poster_path,
+          title,
+          release_date,
+          vote_average,
+          backdrop_path,
+          overview,
+          genre_ids,
+        }}
+        isOpen={modalOpen}
+        onClose={closeModal}
+      />
     </div>
   );
 };

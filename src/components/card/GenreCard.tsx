@@ -1,13 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { FaStar } from "react-icons/fa";
 import { IMAGE_URL } from "../../api/api";
 import { LazyLoadImage } from "react-lazy-load-image-component";
-import { SearchProps } from "../../types/search";
 import { FaHeart } from "react-icons/fa";
+import { Movie } from "../../types/movie";
+import MovieModal from "../modal/MovieModal";
 
-interface GenreCardProps extends SearchProps {
+interface GenreCardProps extends Movie {
   index: number;
+  onImageClick?: (movie: Movie) => void;
 }
 
 const GenreCard: React.FC<GenreCardProps> = ({
@@ -17,10 +19,38 @@ const GenreCard: React.FC<GenreCardProps> = ({
   vote_average,
   vote_count,
   index,
+  onImageClick,
+  backdrop_path,
+  overview,
+  genre_ids,
 }) => {
+  const [modalOpen, setModalOpen] = useState(false);
+  const handleClick = () => {
+    const movie = {
+      poster_path,
+      title,
+      release_date,
+      vote_average,
+      backdrop_path,
+      overview,
+      genre_ids,
+    };
+    if (typeof onImageClick === "function") {
+      onImageClick(movie);
+    }
+    setModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setModalOpen(false);
+  };
+
   return (
     <div className="w-full rounded-md py-2 duration-300">
-      <div className="group relative h-96 w-full cursor-pointer transition-all hover:rotate-3 hover:scale-105">
+      <div
+        onClick={handleClick}
+        className="group relative h-96 w-full cursor-pointer transition-all hover:rotate-3 hover:scale-105"
+      >
         <span className="absolute left-[-2px] top-[-1rem] z-10 rotate-3 rounded border-2 border-secondary px-2 transition-all group-hover:rotate-0 group-hover:scale-105">
           {index + 1}
         </span>
@@ -51,10 +81,26 @@ const GenreCard: React.FC<GenreCardProps> = ({
           </div>
           <div className="flex items-center gap-1 text-sm text-danger">
             <FaHeart />
-            <span className="text-white">{(vote_count / 100).toFixed(2)}</span>
+            <span className="text-white">
+              {vote_count ? (vote_count / 100).toFixed(2) : "N/A"}
+            </span>
           </div>
         </div>
       </div>
+
+      <MovieModal
+        movie={{
+          poster_path,
+          title,
+          release_date,
+          vote_average,
+          backdrop_path,
+          overview,
+          genre_ids,
+        }}
+        isOpen={modalOpen}
+        onClose={closeModal}
+      />
     </div>
   );
 };

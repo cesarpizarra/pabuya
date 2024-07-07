@@ -170,3 +170,13 @@ export const genres = [
     name: "Western",
   },
 ];
+
+// Function to get genre names based on IDs
+export const getGenreNames = (genreIds: any) => {
+  return genreIds
+    .map((genreId: any) => {
+      const genre = genres.find((g) => g.id === genreId);
+      return genre ? genre.name : ""; // Return empty string if genre is not found
+    })
+    .join(", ");
+};

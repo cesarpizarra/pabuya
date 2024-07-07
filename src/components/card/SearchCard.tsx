@@ -1,20 +1,54 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { FaStar } from "react-icons/fa";
 import { IMAGE_URL } from "../../api/api";
 import { LazyLoadImage } from "react-lazy-load-image-component";
-import { SearchProps } from "../../types/search";
 import { FaHeart } from "react-icons/fa";
-const SearchCard: React.FC<SearchProps> = ({
+import MovieModal from "../modal/MovieModal";
+import { Movie } from "../../types/movie";
+
+interface SearchCardProps extends Movie {
+  onImageClick?: (movie: Movie) => void;
+}
+
+const SearchCard: React.FC<SearchCardProps> = ({
   poster_path,
   title,
   release_date,
   vote_average,
   vote_count,
+  backdrop_path,
+  overview,
+  genre_ids,
+  onImageClick,
 }) => {
+  const [modalOpen, setModalOpen] = useState(false);
+
+  const handleClick = () => {
+    const movie = {
+      poster_path,
+      title,
+      release_date,
+      vote_average,
+      backdrop_path,
+      overview,
+      genre_ids,
+    };
+    if (typeof onImageClick === "function") {
+      onImageClick(movie);
+    }
+    setModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setModalOpen(false);
+  };
   return (
     <div className="w-full rounded-md py-2 duration-300">
-      <div className="relative h-96 w-full cursor-pointer transition-all hover:rotate-3 hover:scale-105">
+      <div
+        onClick={handleClick}
+        className="relative h-96 w-full cursor-pointer overflow-hidden transition-all hover:rotate-3 hover:scale-105"
+      >
         <LazyLoadImage
           src={
             poster_path
@@ -42,10 +76,26 @@ const SearchCard: React.FC<SearchProps> = ({
           </div>
           <div className="flex items-center gap-1 text-sm text-danger">
             <FaHeart />
-            <span className="text-white">{(vote_count / 100).toFixed(2)}</span>
+            <span className="text-white">
+              {vote_count ? (vote_count / 100).toFixed(2) : "N/A"}
+            </span>
           </div>
         </div>
       </div>
+
+      <MovieModal
+        movie={{
+          poster_path,
+          title,
+          release_date,
+          vote_average,
+          backdrop_path,
+          overview,
+          genre_ids,
+        }}
+        isOpen={modalOpen}
+        onClose={closeModal}
+      />
     </div>
   );
 };

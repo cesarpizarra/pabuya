@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import { getUpcoming } from "../../services";
 import MovieCard from "../card/MovieCard";
-import { MovieProps } from "../../types/movie";
+import { Movie } from "../../types/movie";
 
 const Upcoming = () => {
-  const [data, setData] = useState<MovieProps[]>([]);
+  const [data, setData] = useState<Movie[]>([]);
 
   useEffect(() => {
     const fetchUpcoming = async () => {
@@ -22,8 +22,8 @@ const Upcoming = () => {
     <section className="w-full bg-darkPrimary px-8 py-8 text-white">
       <h2 className="font-sans text-xl font-medium">Upcoming</h2>
       <div className="flex w-full items-center gap-4 overflow-x-auto overflow-y-hidden">
-        {data.map((up) => (
-          <MovieCard key={up.id} {...up} />
+        {data.map((up, index) => (
+          <MovieCard key={index} {...up} />
         ))}
       </div>
     </section>

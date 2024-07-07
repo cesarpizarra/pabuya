@@ -1,4 +1,4 @@
-export type PeopleProps = {
+export type People = {
   id: any;
   known_for_department: string;
   name: string;

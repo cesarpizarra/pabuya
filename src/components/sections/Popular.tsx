@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import { getPopular } from "../../services";
 import MovieCard from "../card/MovieCard";
-import { MovieProps } from "../../types/movie";
+import { Movie } from "../../types/movie";
 
 const Popular = () => {
-  const [data, setData] = useState<MovieProps[]>([]);
+  const [data, setData] = useState<Movie[]>([]);
   useEffect(() => {
     const fetchPopular = async () => {
       try {
@@ -22,8 +22,8 @@ const Popular = () => {
       <h2 className="font-sans text-xl font-medium">What's Popular?</h2>
 
       <div className="flex w-full items-center gap-4 overflow-x-auto overflow-y-hidden">
-        {data.map((popular) => (
-          <MovieCard key={popular.id} {...popular} />
+        {data.map((popular, index) => (
+          <MovieCard key={index} {...popular} />
         ))}
       </div>
     </section>

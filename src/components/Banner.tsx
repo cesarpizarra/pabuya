@@ -30,15 +30,8 @@ const Banner = () => {
           </p>
 
           <div className="flex w-full items-center gap-4 overflow-x-auto overflow-y-hidden">
-            {johnWick.map((movie) => (
-              <MovieCard
-                key={movie.id}
-                title={movie.title}
-                id={movie.id}
-                poster_path={movie.poster_path}
-                release_date={movie.release_date}
-                vote_average={movie.vote_average}
-              />
+            {johnWick.map((movie, index) => (
+              <MovieCard key={index} {...movie} />
             ))}
           </div>
         </div>

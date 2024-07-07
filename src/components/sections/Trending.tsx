@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import MovieCard from "../card/MovieCard";
-import { MovieProps } from "../../types/movie";
 import { getTrending } from "../../services";
+import { Movie } from "../../types/movie";
 
 const Trending = () => {
-  const [data, setData] = useState<MovieProps[]>([]);
+  const [data, setData] = useState<Movie[]>([]);
 
   useEffect(() => {
     const fetchTrending = async () => {
@@ -23,8 +23,8 @@ const Trending = () => {
       <h2 className="font-sans text-xl font-medium">What's Trending?</h2>
 
       <div className="flex w-full items-center gap-4 overflow-x-auto overflow-y-hidden">
-        {data.map((latest) => (
-          <MovieCard key={latest.id} {...latest} />
+        {data.map((latest, index) => (
+          <MovieCard key={index} {...latest} />
         ))}
       </div>
     </section>

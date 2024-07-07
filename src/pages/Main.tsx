@@ -1,5 +1,4 @@
 import Layout from "../components/layout/Layout";
-import { FiSearch } from "react-icons/fi";
 import { FaAngleDown } from "react-icons/fa6";
 import Popular from "../components/sections/Popular";
 import TopRated from "../components/sections/TopRated";
@@ -9,24 +8,13 @@ import Banner from "../components/Banner";
 import Trending from "../components/sections/Trending";
 import { useBackgroundImage } from "../utils/useBackground";
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import Search from "../components/Search";
 const Main = () => {
   const backgroundImage = useBackgroundImage();
   const navigate = useNavigate();
-  const [query, setQuery] = useState("");
-  const handleSearch = () => {
-    if (query === "") {
-      alert("Please enter a movie title");
-      return;
-    }
-    // Navigate to BrowseMovies with query
-    navigate(`/browse-movies?query=${encodeURIComponent(query)}`);
-  };
 
-  const handleKeyPress = (e: any) => {
-    if (e.key === "Enter") {
-      handleSearch();
-    }
+  const handleSearch = (query: string) => {
+    navigate(`/browse-movies?query=${encodeURIComponent(query)}`);
   };
   return (
     <Layout>
@@ -45,6 +33,10 @@ const Main = () => {
               <span className="inline-block bg-gradient-to-r from-green-500 to-cyan-400 bg-clip-text font-bold text-transparent">
                 TMDB
               </span>{" "}
+              &{" "}
+              <span className="inline-block bg-gradient-to-r from-yellow-500 to-yellow-300 bg-clip-text font-bold text-transparent">
+                IMDB
+              </span>{" "}
               Alternative for Discovering Thousands of Movies and TV Shows
             </h1>
 
@@ -53,23 +45,10 @@ const Main = () => {
             </p>
 
             <div className="relative mt-5 w-full">
-              <input
-                type="text"
-                value={query}
-                onKeyPress={handleKeyPress}
-                onChange={(e) => setQuery(e.target.value)}
-                placeholder="Search Movies..."
-                className="w-full rounded bg-gray-400 bg-opacity-20 bg-clip-padding p-3 outline-none backdrop-blur-none backdrop-filter md:p-5"
-              />
-              <div
-                onClick={handleSearch}
-                className="absolute right-5 top-3 cursor-pointer md:top-5"
-              >
-                <FiSearch size={25} />
-              </div>
+              <Search onSearch={handleSearch} />
             </div>
 
-            <div className="mt-60 flex items-center justify-center">
+            <div className="mt-32 flex animate-bounce items-center justify-center md:mt-60">
               <FaAngleDown size={40} />
             </div>
           </div>

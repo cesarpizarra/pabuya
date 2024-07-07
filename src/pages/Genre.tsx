@@ -2,24 +2,25 @@ import { useEffect, useState } from "react";
 import Layout from "../components/layout/Layout";
 import { genres } from "../utils";
 import { FaCaretDown } from "react-icons/fa";
-import { SearchProps } from "../types/search";
 import GenreCard from "../components/card/GenreCard";
 import { getGenre } from "../services";
+import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
+import { Movie } from "../types/movie";
 
 const Genre = () => {
-  const [data, setData] = useState<SearchProps[]>([]);
+  const [data, setData] = useState<Movie[]>([]);
   const [selectedGenre, setSelectedGenre] = useState<any>(28);
-  // const now = new Date().getUTCFullYear();
-  // const years = Array(now - (now - 20))
-  //   .fill("")
-  //   .map((v, idx) => now - idx);
-  // console.log(years);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const fetchTop = async () => {
       try {
         const response = await getGenre();
-        setData(response);
+        setTimeout(() => {
+          setIsLoading(false);
+          setData(response);
+        }, 2000);
       } catch (error) {
         console.error(error);
       }
@@ -32,9 +33,11 @@ const Genre = () => {
     const selected = parseInt(e.target.value, 10);
     setSelectedGenre(selected);
   };
+
   const filteredData = data.filter((movie) =>
     selectedGenre ? movie.genre_ids.includes(selectedGenre) : null,
   );
+
   return (
     <Layout>
       <div className="relative min-h-screen w-full bg-cover bg-center px-4 text-white">
@@ -88,11 +91,24 @@ const Genre = () => {
           </div>
         </div>
 
-        <div className="grid grid-cols-2 gap-4 py-12 sm:grid-cols-3 md:grid-cols-6">
-          {filteredData.map((res, index) => (
-            <GenreCard key={index} index={index} {...res} />
-          ))}
-        </div>
+        {isLoading ? (
+          <div className="grid grid-cols-2 gap-4 py-12 sm:grid-cols-3 md:grid-cols-6">
+            {Array.from({ length: 12 }).map((_, index) => (
+              <div key={index} className="w-full">
+                <SkeletonTheme baseColor="#202020" highlightColor="#444">
+                  <Skeleton height={300} />
+                  <Skeleton count={2} style={{ marginTop: 10 }} />
+                </SkeletonTheme>
+              </div>
+            ))}
+          </div>
+        ) : (
+          <div className="grid grid-cols-2 gap-4 py-12 sm:grid-cols-3 md:grid-cols-6">
+            {filteredData.map((res, index) => (
+              <GenreCard key={index} index={index} {...res} />
+            ))}
+          </div>
+        )}
       </div>
     </Layout>
   );

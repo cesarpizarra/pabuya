@@ -1,10 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { PeopleProps } from "../../types/people";
 import { TbActivityHeartbeat } from "react-icons/tb";
 import { IMAGE_URL } from "../../api/api";
+import { People } from "../../types/people";
 
-const PeopleCard: React.FC<PeopleProps> = ({
+const PeopleCard: React.FC<People> = ({
   name,
   popularity,
   known_for_department,

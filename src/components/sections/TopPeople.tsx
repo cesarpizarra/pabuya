@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import { getPeople } from "../../services";
-import { PeopleProps } from "../../types/people";
 import PeopleCard from "../card/PeopleCard";
+import { People } from "../../types/people";
 
 const TopPeople = () => {
-  const [data, setData] = useState<PeopleProps[]>([]);
+  const [data, setData] = useState<People[]>([]);
 
   useEffect(() => {
     const fechPeople = async () => {
