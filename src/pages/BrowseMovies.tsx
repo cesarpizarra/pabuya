@@ -27,6 +27,7 @@ const BrowseMovies = () => {
       setTimeout(() => {
         setIsLoading(false);
         setResults(searchResults);
+
         // Update query parameter in URL
         navigate(`/browse-movies?query=${encodeURIComponent(query)}`);
       }, 1500);
