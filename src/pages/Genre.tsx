@@ -37,7 +37,7 @@ const Genre = () => {
   };
 
   const filteredData = movies.filter((movie) =>
-    selectedGenre ? movie.genre_ids.includes(selectedGenre) : null,
+    selectedGenre ? movie.genre_ids.includes(selectedGenre) : movies,
   );
 
   const handleLoadMore = () => {
