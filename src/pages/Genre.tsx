@@ -13,12 +13,19 @@ const Genre = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
   const [movies, setMovies] = useState<Movie[]>([]);
-  const fetchTop = async (page: number) => {
+  const fetchTop = async () => {
     try {
-      const response = await getGenre(page);
+      const response = await getGenre(currentPage);
       setTimeout(() => {
         setIsLoading(false);
-        setMovies((prevMovies) => [...prevMovies, ...response]);
+        // Filter out duplicate movies by checking if they already exist in state
+        setMovies((prevMovies) => {
+          const newMovies = response.filter(
+            (newMovie: any) =>
+              !prevMovies.some((prevMovie) => prevMovie.id === newMovie.id),
+          );
+          return [...prevMovies, ...newMovies];
+        });
       }, 2000);
     } catch (error) {
       console.error(error);
@@ -26,13 +33,12 @@ const Genre = () => {
   };
 
   useEffect(() => {
-    fetchTop(currentPage);
+    fetchTop();
   }, [currentPage]);
 
   const handleGenreChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const selected = parseInt(e.target.value, 10);
     setSelectedGenre(selected);
-    setMovies([]); // Reset movies when genre changes
     setCurrentPage(1); // Reset to the first page
   };
 

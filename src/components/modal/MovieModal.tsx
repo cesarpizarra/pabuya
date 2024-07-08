@@ -29,7 +29,7 @@ const MovieModal: React.FC<MovieModalProps> = ({ movie, isOpen, onClose }) => {
         <div className="fixed inset-0 z-50 flex items-center justify-center px-5 font-sans backdrop-contrast-100 backdrop-grayscale backdrop-filter">
           <div
             style={backgroundImageStyle}
-            className="relative h-96 w-full max-w-4xl rounded-lg p-6 shadow-lg shadow-gray-800"
+            className="relative h-96 w-full max-w-4xl overflow-y-auto rounded-lg p-6 shadow-lg shadow-gray-800"
           >
             <div className="absolute right-2 top-2">
               <button
