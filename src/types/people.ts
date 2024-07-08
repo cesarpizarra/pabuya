@@ -4,4 +4,8 @@ export type People = {
   name: string;
   popularity: number;
   profile_path: string;
+  character?: string;
+  biography?: string;
+  birthday?: string;
+  place_of_birth?: string;
 };

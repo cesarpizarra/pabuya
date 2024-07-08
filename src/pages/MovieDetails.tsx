@@ -10,6 +10,9 @@ import { formatDate } from "../utils";
 import { FaPlay } from "react-icons/fa";
 import { useMediaQuery } from "react-responsive";
 import Video from "../components/modal/Video";
+import Cast from "../components/sections/Cast";
+import Similar from "../components/sections/Similar";
+import Suggested from "../components/sections/Suggested";
 const MovieDetails = () => {
   const { id } = useParams();
   const [data, setData] = useState<MovieData | null>(null);
@@ -20,6 +23,7 @@ const MovieDetails = () => {
   const navigate = useNavigate();
   const isMdDevice = useMediaQuery({ query: "(min-width: 768px)" });
   const getDetails = async () => {
+    setLoading(true);
     try {
       const response = await getMovieById(Number(id));
       setTimeout(() => {
@@ -109,7 +113,7 @@ const MovieDetails = () => {
       {data && (
         <div
           style={backgroundImageStyle}
-          className="font-nunito relative min-h-screen w-full bg-cover bg-center px-4 text-white"
+          className="relative min-h-screen w-full bg-cover bg-center px-4 font-nunito text-white"
         >
           <div className="relative z-10 flex min-h-screen flex-col justify-center">
             <div className="absolute right-20 top-8 hidden lg:block">
@@ -118,7 +122,7 @@ const MovieDetails = () => {
                 placeholder="Search movie..."
                 onChange={(e) => setQuery(e.target.value)}
                 onKeyDown={handleSearch}
-                className="rounded-full border-none bg-darkPrimary bg-opacity-50 px-4 py-2 outline-none"
+                className="rounded-full border-none bg-darkPrimary bg-opacity-50 px-4 py-2 placeholder-gray-50 outline-none"
               />
             </div>
             <div className="max-w-5xl">
@@ -157,7 +161,7 @@ const MovieDetails = () => {
               </div>
             </div>
           </div>
-          <ul className="relative z-10 mb-4 w-full items-center gap-8 rounded-md bg-neutral-900 p-3 py-8 shadow-lg shadow-zinc-900 md:flex">
+          <ul className="relative z-10 w-full items-center gap-8 rounded-md bg-neutral-900 p-3 py-8 shadow-lg shadow-zinc-900 md:flex">
             {dataList.map((item, i) => (
               <li key={i} className="py-2 md:py-0">
                 <p className="text-sm text-grayText">{item.name}</p>
@@ -168,6 +172,9 @@ const MovieDetails = () => {
         </div>
       )}
 
+      <Cast id={Number(id)} />
+      <Similar id={Number(id)} />
+      <Suggested id={Number(id)} />
       {showVideo && <Video videoKey={videoKey} onClose={handleClose} />}
     </Layout>
   );

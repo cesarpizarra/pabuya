@@ -5,6 +5,7 @@ import { IMAGE_URL } from "../../api/api";
 import { People } from "../../types/people";
 
 const PeopleCard: React.FC<People> = ({
+  id,
   name,
   popularity,
   known_for_department,
@@ -12,16 +13,18 @@ const PeopleCard: React.FC<People> = ({
 }) => {
   return (
     <div className="h-96 rounded-md py-2 shadow-md transition-shadow duration-300 hover:shadow-lg">
-      <div className="h-3/4 w-48 cursor-pointer transition-all hover:rotate-3 hover:scale-105">
-        <img
-          src={`${IMAGE_URL}/${profile_path}`}
-          alt={name}
-          className="h-full w-full rounded object-cover"
-        />
-      </div>
+      <Link to={`/person/${id}`}>
+        <div className="h-3/4 w-48 cursor-pointer transition-all hover:rotate-3 hover:scale-105">
+          <img
+            src={`${IMAGE_URL}/${profile_path}`}
+            alt={name}
+            className="h-full w-full rounded object-cover"
+          />
+        </div>
+      </Link>
       <div className="py-4">
         <Link
-          to={`#`}
+          to={`/person/${id}`}
           className="text-primary hover:text-primary-dark block cursor-pointer text-sm font-semibold transition-colors duration-300 hover:text-danger"
         >
           {name}

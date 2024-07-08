@@ -6,6 +6,7 @@ export type Movie = {
   vote_average: number;
   vote_count?: number;
   backdrop_path: string;
+  character?: string;
   overview: string;
   genre_ids: number[];
 };

@@ -3,6 +3,8 @@ import Main from "../pages/Main";
 import BrowseMovies from "../pages/BrowseMovies";
 import Genre from "../pages/Genre";
 import MovieDetails from "../pages/MovieDetails";
+import NotFound from "../pages/NotFound";
+import PersonDetails from "../pages/PersonDetails";
 
 const AppRoutes = () => {
   return (
@@ -12,6 +14,8 @@ const AppRoutes = () => {
         <Route path="/browse-movies" element={<BrowseMovies />} />
         <Route path="/genre" element={<Genre />} />
         <Route path="/movie/:id" element={<MovieDetails />} />
+        <Route path="/person/:id" element={<PersonDetails />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </div>
   );

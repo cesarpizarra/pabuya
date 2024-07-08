@@ -7,36 +7,43 @@ import { getGenre } from "../services";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import { Movie } from "../types/movie";
-
+import { FiRefreshCw } from "react-icons/fi";
 const Genre = () => {
-  const [data, setData] = useState<Movie[]>([]);
   const [selectedGenre, setSelectedGenre] = useState<any>(28);
   const [isLoading, setIsLoading] = useState(true);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [movies, setMovies] = useState<Movie[]>([]);
+  const fetchTop = async (page: number) => {
+    try {
+      const response = await getGenre(page);
+      setTimeout(() => {
+        setIsLoading(false);
+        setMovies((prevMovies) => [...prevMovies, ...response]);
+      }, 2000);
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   useEffect(() => {
-    const fetchTop = async () => {
-      try {
-        const response = await getGenre();
-        setTimeout(() => {
-          setIsLoading(false);
-          setData(response);
-        }, 2000);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-
-    fetchTop();
-  }, []);
+    fetchTop(currentPage);
+  }, [currentPage]);
 
   const handleGenreChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const selected = parseInt(e.target.value, 10);
     setSelectedGenre(selected);
+    setMovies([]); // Reset movies when genre changes
+    setCurrentPage(1); // Reset to the first page
   };
 
-  const filteredData = data.filter((movie) =>
+  const filteredData = movies.filter((movie) =>
     selectedGenre ? movie.genre_ids.includes(selectedGenre) : null,
   );
+
+  const handleLoadMore = () => {
+    setIsLoading(true);
+    setCurrentPage((prev) => prev + 1);
+  };
 
   return (
     <Layout>
@@ -91,7 +98,7 @@ const Genre = () => {
           </div>
         </div>
 
-        {isLoading ? (
+        {isLoading && currentPage === 1 ? (
           <div className="grid grid-cols-2 gap-4 py-12 sm:grid-cols-3 md:grid-cols-6">
             {Array.from({ length: 12 }).map((_, index) => (
               <div key={index} className="w-full">
@@ -109,6 +116,19 @@ const Genre = () => {
             ))}
           </div>
         )}
+
+        <div className="flex items-center justify-center font-bold">
+          <button
+            onClick={handleLoadMore}
+            className="inline-flex items-center gap-2 rounded-md bg-[#1a1a1a] px-4 py-2 text-secondary shadow-lg"
+          >
+            <span className={`${isLoading ? "animate-spin" : ""}`}>
+              {" "}
+              <FiRefreshCw />{" "}
+            </span>
+            {isLoading ? "LOADING..." : "LOAD MORE"}
+          </button>
+        </div>
       </div>
     </Layout>
   );

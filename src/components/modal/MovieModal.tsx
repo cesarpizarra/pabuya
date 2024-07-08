@@ -29,39 +29,38 @@ const MovieModal: React.FC<MovieModalProps> = ({ movie, isOpen, onClose }) => {
         <div className="fixed inset-0 z-50 flex items-center justify-center px-5 font-sans backdrop-contrast-100 backdrop-grayscale backdrop-filter">
           <div
             style={backgroundImageStyle}
-            className="relative h-2/4 w-full max-w-4xl rounded-lg p-6 shadow-lg shadow-gray-500"
+            className="relative h-96 w-full max-w-4xl rounded-lg p-6 shadow-lg shadow-gray-800"
           >
-            <div className="mt-16 flex items-center pb-3">
-              <div>
-                <h1 className="text-lg font-semibold">
-                  {title} ({release_date.substring(0, 4)})
-                </h1>
-                <p className="text-xs">
-                  {" "}
-                  <span>EN</span> | {getGenreNames(genre_ids)}
-                </p>
-              </div>
-
+            <div className="absolute right-2 top-2">
               <button
                 onClick={onClose}
-                className="absolute right-2 top-2 rounded-full bg-darkPrimary bg-opacity-50 p-1 transition duration-300 hover:bg-danger"
+                className="rounded-full bg-darkPrimary bg-opacity-50 p-1 transition duration-300 hover:bg-danger"
               >
                 <FiX size={24} />
               </button>
             </div>
 
-            <div className="max-w-md">
-              <div className="mb-4 flex items-center gap-4">
+            <div className="mt-12 max-w-md">
+              <div>
+                <h1 className="text-lg font-semibold">
+                  {title} ({release_date.substring(0, 4)})
+                </h1>
+                <p className="text-xs">
+                  <span>EN</span> | {getGenreNames(genre_ids)}
+                </p>
+              </div>
+              <div className="flex items-center gap-4 py-4">
                 <img src="/tmdb.svg" alt="tmdb logo" className="w-24" />
               </div>
 
               <p className="text-justify text-sm tracking-wide">{overview}</p>
-            </div>
-
-            <div className="absolute bottom-4 rounded-md bg-darkPrimary px-4 py-2 text-sm shadow-md shadow-darkSecondary hover:text-secondary">
-              <Link to={`/movie/${id}`}>
-                <button>View More</button>
-              </Link>
+              <div className="mt-4">
+                <Link to={`/movie/${id}`}>
+                  <button className="rounded-md bg-darkPrimary px-4 py-2 text-sm shadow-md shadow-darkSecondary hover:text-secondary">
+                    View More
+                  </button>
+                </Link>
+              </div>
             </div>
           </div>
         </div>
