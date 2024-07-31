@@ -12,7 +12,7 @@ const App: React.FC = () => {
   }, [pathname]);
 
   useEffect(() => {
-    setTimeout(() => setLoading(false), 1000);
+    setTimeout(() => setLoading(false), 2000);
   }, []);
   return loading ? (
     <Loader />

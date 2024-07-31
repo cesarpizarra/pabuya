@@ -1,5 +1,5 @@
 import { FiX } from "react-icons/fi";
-
+import { motion } from "framer-motion";
 interface VideoProps {
   onClose: () => void;
   videoKey: string;
@@ -8,7 +8,15 @@ interface VideoProps {
 const Video: React.FC<VideoProps> = ({ videoKey, onClose }) => {
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center px-5 font-sans backdrop-contrast-100 backdrop-grayscale backdrop-filter">
-      <div className="relative flex w-full max-w-4xl items-center justify-center">
+      <motion.div
+        initial={{ x: "100vw", y: "100vh", scale: 1 }}
+        animate={{ x: 0, y: 0 }}
+        transition={{
+          duration: 1,
+          ease: "easeInOut",
+        }}
+        className="relative flex w-full max-w-4xl items-center justify-center"
+      >
         <iframe
           className="h-64 w-full md:h-96 lg:h-[500px] xl:h-[500px]"
           src={`https://www.youtube.com/embed/${videoKey}`}
@@ -21,7 +29,7 @@ const Video: React.FC<VideoProps> = ({ videoKey, onClose }) => {
         >
           <FiX size={24} />
         </button>
-      </div>
+      </motion.div>
     </div>
   );
 };

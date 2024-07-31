@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import Layout from "../components/layout/Layout";
 import { useEffect, useState } from "react";
 import { People } from "../types/people";
@@ -137,36 +137,35 @@ const PersonDetails = () => {
             <ul className="mt-8 flex w-full flex-col gap-8 rounded-md p-3 py-4">
               <p className="text-lg">{data.name && `${data.name} Movies`}</p>
               {movies.map((item, i) => (
-                <li
-                  key={i}
-                  className="flex items-center rounded-md bg-[#1a1a1a] p-2"
-                >
-                  <div className="flex h-full w-full items-center justify-between">
-                    <div className="flex items-center gap-3">
-                      <div className="w-20">
-                        <LazyLoadImage
-                          src={`${IMAGE_URL}/${item.poster_path}`}
-                          alt={item.title}
-                          className="h-full w-full rounded object-cover"
-                          loading="lazy"
-                        />
+                <Link key={i} to={`/movie/${item.id}`}>
+                  <li className="flex cursor-pointer items-center rounded-md bg-[#1a1a1a] p-2 hover:bg-darkSecondary">
+                    <div className="flex h-full w-full items-center justify-between">
+                      <div className="flex items-center gap-3">
+                        <div className="w-20">
+                          <LazyLoadImage
+                            src={`${IMAGE_URL}/${item.poster_path}`}
+                            alt={item.title}
+                            className="h-full w-full rounded object-cover"
+                            loading="lazy"
+                          />
+                        </div>
+
+                        <div className="flex flex-col text-sm">
+                          <h2>{item.title}</h2>
+                          <p>{item.release_date.substring(0, 4)}</p>
+                          <p className="text-grayText">as {item.character}</p>
+                        </div>
                       </div>
 
-                      <div className="flex flex-col text-sm">
-                        <h2>{item.title}</h2>
-                        <p>{item.release_date.substring(0, 4)}</p>
-                        <p className="text-grayText">as {item.character}</p>
-                      </div>
+                      <p className="inline-flex items-center gap-2 text-sm">
+                        <span className="text-secondary">
+                          <FaStar />
+                        </span>
+                        {item.vote_average}
+                      </p>
                     </div>
-
-                    <p className="inline-flex items-center gap-2 text-sm">
-                      <span className="text-secondary">
-                        <FaStar />
-                      </span>
-                      {item.vote_average}
-                    </p>
-                  </div>
-                </li>
+                  </li>
+                </Link>
               ))}
             </ul>
           </div>

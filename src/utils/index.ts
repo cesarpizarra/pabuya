@@ -79,12 +79,12 @@ export const links = [
     path: "/browse-movies",
   },
   {
-    title: "TV",
-    path: "/tv",
-  },
-  {
     title: "Signin/Signup",
     path: "/movie-genres",
+  },
+  {
+    title: "TV",
+    path: "/tv",
   },
   {
     title: "My Watchlist",

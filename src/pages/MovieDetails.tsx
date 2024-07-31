@@ -152,7 +152,7 @@ const MovieDetails = () => {
 
                   <button
                     onClick={handleShowTrailer}
-                    className="inline-flex items-center gap-2 font-bold text-white transition duration-300 hover:text-danger"
+                    className="inline-flex items-center gap-2 rounded-full bg-white px-2 py-1 font-bold text-darkPrimary transition duration-300 hover:text-danger"
                   >
                     <FaPlay />
                     Random Trailer

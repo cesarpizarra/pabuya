@@ -4,7 +4,7 @@ import { MODAL_URL } from "../../api/api";
 import { getGenreNames } from "../../utils";
 import { Movie } from "../../types/movie";
 import { Link } from "react-router-dom";
-
+import { motion } from "framer-motion";
 interface MovieModalProps {
   movie: Movie;
   isOpen: boolean;
@@ -27,9 +27,15 @@ const MovieModal: React.FC<MovieModalProps> = ({ movie, isOpen, onClose }) => {
     <>
       {isOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center px-5 font-sans backdrop-contrast-100 backdrop-grayscale backdrop-filter">
-          <div
+          <motion.div
+            initial={{ x: "100vw", y: "100vh", scale: 1 }}
+            animate={{ x: 0, y: 0 }}
+            transition={{
+              duration: 1,
+              ease: "easeInOut",
+            }}
             style={backgroundImageStyle}
-            className="relative h-96 w-full max-w-4xl overflow-y-auto rounded-lg p-6 shadow-lg shadow-gray-800"
+            className="relative w-full max-w-4xl rounded-lg p-12 shadow-lg shadow-gray-800"
           >
             <div className="absolute right-2 top-2">
               <button
@@ -62,7 +68,7 @@ const MovieModal: React.FC<MovieModalProps> = ({ movie, isOpen, onClose }) => {
                 </Link>
               </div>
             </div>
-          </div>
+          </motion.div>
         </div>
       )}
     </>

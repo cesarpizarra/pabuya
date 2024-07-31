@@ -5,6 +5,7 @@ import { links } from "../../utils";
 
 const Navbar = () => {
   const [isOpen, setOpen] = useState(false);
+
   const navigate = useNavigate();
   useEffect(() => {
     if (isOpen) {
@@ -26,7 +27,7 @@ const Navbar = () => {
     <div>
       <div className="absolute left-5 top-10 z-50 rounded-full bg-opacity-50 text-white">
         <Link to="/">
-          <h1 className="font-poppins cursor-pointer text-xl font-semibold">
+          <h1 className="cursor-pointer font-poppins text-xl font-semibold">
             PABUYA
           </h1>
         </Link>
